@@ -1,3 +1,88 @@
-# Aliens-Invation
-新手开发者基于pygame开发的<外星人入侵>小游戏,开发过程请参考'DEVEPLOPE'文档
-如有不足请不吝指点
+# Alien Invasion
+
+> A 2D shooting game developed with Python and Pygame.
+
+
+<img width="2013" height="1300" alt="屏幕截图 2026-09-15 214949" src="https://github.com/user-attachments/assets/2158e615-a400-49ae-99d9-a65f1707eda7" />
+
+
+
+## Overview
+
+Alien Invasion is a 2D shooting game developed with Python and Pygame.
+The project is being continuously maintained and developed as a personal
+software project.
+
+## Features
+
+- Player movement and shooting
+- Multiple enemy types
+- Enemy shooting
+- Player and enemy health systems
+- Collision detection
+- Score system
+- High-score system(developing)
+- Level progression
+- Dynamic enemy difficulty
+- Pause system
+- Interactive buttons
+
+## Screenshots
+
+### Gameplay
+
+<img width="2013" height="1300" alt="屏幕截图 2026-09-15 214949" src="https://github.com/user-attachments/assets/e959c56e-2018-468b-8202-b2553b5a942a" />
+
+
+### Pause Menu
+
+<img width="2006" height="1295" alt="屏幕截图 2026-09-15 215004" src="https://github.com/user-attachments/assets/5c98e919-b16b-47e1-a772-6a466c0a32a5" />
+
+##Project Structure
+Alien_Invation
+ ┣ enemy
+ ┃ ┣ aliens
+ ┃ ┗ shooter 
+ ┣ Events
+ ┃ ┣ game_events
+ ┃ ┗ hardware_event
+ ┣ Public
+ ┃ ┣ Bullets
+ ┃ ┃ ┣ bullet
+ ┃ ┃ ┗homing_bullet 
+ ┃ ┣ button
+ ┃ ┣ Game_Stats
+ ┃ ┣ life_bar
+ ┃ ┣ scoreboard
+ ┃ ┗ settings  
+ ┣ resource
+ ┃┗ Images
+ ┃  ┣ Gemini_Generated_Image_u2eywyu2eywyu2ey.png
+ ┃  ┣ shiip.bmp
+ ┃  ┣ shiip_1.bmp
+ ┃  ┣ shiip_2 (2).bmp
+ ┃  ┣ shiip_2.bmp
+ ┃  ┣ Shooter.bmp
+ ┃  ┗ Shooter.png    
+ ┣ 123123123
+ ┣ alien_invasion(main programme)
+ ┣ architecture.md
+ ┣ DEVELOPE.txt
+ ┣ player_ship.py
+ ┗ READ_ME.txt
+ 
+## Tech Stack
+
+- Python
+- Pygame
+- Git / GitHub
+
+## How to Run
+
+please download all the files and run 'alien_invasion.py'
+
+### Clone
+
+```bash
+git clone https://github.com/jun-1e/Aliens-Invation
+cd alien-invasion
