@@ -31,7 +31,7 @@ software project.
 
 ### Gameplay
 
-<img width="2013" height="1300" alt="屏幕截图 2026-09-15 214949" src="https://github.com/user-attachments/assets/e959c56e-2018-468b-8202-b2553b5a942a" />
+<img width="2010" height="1298" alt="屏幕截图 2026-09-15 220100" src="https://github.com/user-attachments/assets/f413e4e9-a001-4acc-a763-a1a56e10dba1" />
 
 
 ### Pause Menu
@@ -39,37 +39,47 @@ software project.
 <img width="2006" height="1295" alt="屏幕截图 2026-09-15 215004" src="https://github.com/user-attachments/assets/5c98e919-b16b-47e1-a772-6a466c0a32a5" />
 
 ##Project Structure
-Alien_Invation
- ┣ enemy
- ┃ ┣ aliens
- ┃ ┗ shooter 
- ┣ Events
- ┃ ┣ game_events
- ┃ ┗ hardware_event
- ┣ Public
- ┃ ┣ Bullets
- ┃ ┃ ┣ bullet
- ┃ ┃ ┗homing_bullet 
- ┃ ┣ button
- ┃ ┣ Game_Stats
- ┃ ┣ life_bar
- ┃ ┣ scoreboard
- ┃ ┗ settings  
- ┣ resource
- ┃┗ Images
- ┃  ┣ Gemini_Generated_Image_u2eywyu2eywyu2ey.png
- ┃  ┣ shiip.bmp
- ┃  ┣ shiip_1.bmp
- ┃  ┣ shiip_2 (2).bmp
- ┃  ┣ shiip_2.bmp
- ┃  ┣ Shooter.bmp
- ┃  ┗ Shooter.png    
- ┣ 123123123
- ┣ alien_invasion(main programme)
- ┣ architecture.md
- ┣ DEVELOPE.txt
- ┣ player_ship.py
- ┗ READ_ME.txt
+## Project Structure
+
+```text
+Alien_Invation/
+├── enemy/
+│   ├── aliens
+│   └── shooter
+│
+├── Events/
+│   ├── game_events
+│   └── hardware_event
+│
+├── Public/
+│   ├── Bullets/
+│   │   ├── bullet
+│   │   └── homing_bullet
+│   ├── button
+│   ├── Game_Stats
+│   ├── life_bar
+│   ├── scoreboard<img width="2010" height="1298" alt="屏幕截图 2026-09-15 220100" src="https://github.com/user-attachments/assets/97eb5dc7-3150-452e-84f3-5d5fc9945592" />
+
+│   └── settings
+│
+├── resource/
+│   └── Images/
+│       ├── Gemini_Generated_Image_u2eywyu2eywyu2ey.png
+│       ├── shiip.bmp
+│       ├── shiip_1.bmp
+│       ├── shiip_2 (2).bmp
+│       ├── shiip_2.bmp
+│       ├── Shooter.bmp
+│       └── Shooter.png
+│
+├── alien_invasion.py
+├── player_ship.py
+├── architecture.md
+├── DEVELOPE.txt
+├── 123123123
+└── README.md
+```
+
  
 ## Tech Stack
 
