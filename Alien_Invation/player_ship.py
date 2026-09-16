@@ -1,4 +1,5 @@
 import pygame
+from Public.life_bar import Life_Bar
 from Public.Bullets.bullet import Bullet
 
 class Ship:
@@ -13,6 +14,10 @@ class Ship:
         self.bullets = pygame.sprite.Group()
         self.life_limit = self.settings.life_limit
         self.life = self.life_limit
+        self.life_bar = Life_Bar(self.settings.screen_width-self.settings.PLB_width-50,
+                                    self.settings.screen_height - 20 , self.screen,
+                                    self.settings.PLB_width,
+                                    self.settings.PLB_height,self.settings.life_limit)
 
         #加载飞船图像并获取其外接矩形
         self.image = pygame.image.load('resource/Images/shiip_2 (2).bmp')
@@ -49,8 +54,8 @@ class Ship:
         if self.ai_game.shooting and len(self.bullets) < self.settings.bullets_allowed:
             current_time = pygame.time.get_ticks()
             """创建子弹并加入bullets"""
-            if current_time - self.last_shot_time > (
-                    self.settings.bullet_cooldown and self.ai_game.shooting):
+            if current_time - self.last_shot_time >( 
+                    self.settings.bullet_cooldown )and self.ai_game.shooting:
                 new_bullet= Bullet(self.ai_game,self)
                 self.bullets.add(new_bullet)
                 self.last_shot_time = current_time

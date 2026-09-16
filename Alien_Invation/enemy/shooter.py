@@ -13,7 +13,9 @@ class Shooter(Alien):
         self.bullets = pygame.sprite.Group()
         self.shooting_cooldown = self.settings.Shooter_cooldown
         self.cooldown = 0
-        self.score = 2
+        self.score = 20
+        self.maxlife = 2
+        self.life = 2
         
 
     def shoot(self):

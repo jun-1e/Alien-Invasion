@@ -39,14 +39,18 @@ class Hardware_Event:
             if not self.ai_game.Dead:
                 self.ai_game.Pause = not self.ai_game.Pause
                 self.ai_game.transparency_count = 0
+            
         
     def check_mouse_events(self,event):
         """响应鼠标动作"""
         if not self.ai_game.Active:
             pass
         if self.ai_game.Pause:
-            if self.ai_game.button.rect.collidepoint(pygame.mouse.get_pos()):
+            if self.ai_game.pause_button.rect.collidepoint(pygame.mouse.get_pos()):
                 self.ai_game.Pause = not self.ai_game.Pause
+        if self.ai_game.Dead:
+            if self.ai_game.restart_button.rect.collidepoint(pygame.mouse.get_pos()):
+                self.ai_game.game_stats.reset_game()
     
     def check_keyup_events(self,event):
         """响应松开"""

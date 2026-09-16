@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 from random import randint
+from Public.life_bar import Life_Bar
 
 
 class Alien(Sprite):
@@ -12,12 +13,19 @@ class Alien(Sprite):
         self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
         self.ai_game = ai_game 
-        self.score = 1  
+        self.score = 10  
         self.spawn_timer = 0
+        self.maxlife = 1
+        self.life = 1
+        
         self.xdirection = randint(0,1)*2-1
         #加载外星人图像并获取其外接矩形
         self.image = pygame.image.load('resource/Images/shiip_2 (2).bmp')
         self.rect = self.image.get_rect()
+        self.life_bar = Life_Bar(self.rect.left,self.rect.bottom,self.screen,
+                                 self.settings.enemy_lfbar_width,
+                                 self.settings.enemy_lfbar_height,
+                                 self.maxlife)
 
     
     def update(self):

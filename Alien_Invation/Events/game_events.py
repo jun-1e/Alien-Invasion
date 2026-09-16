@@ -3,43 +3,39 @@ from enemy.aliens import Alien
 from enemy.shooter import Shooter
 from Public.scoreboard import Scoreboard
 from random import randint
+from Public.button import Button
 
 class Game_Events:
      def __init__(self,ai_game):
         self.ai_game = ai_game
-        self.settings = ai_game.settings
-        
+        self.settings = ai_game.game_stats.setting       
         self.screen = ai_game.screen
         self.alien = Alien(self.ai_game)
         self.randint = randint
         self.aliens_fleet = ai_game.aliens_fleet
         self.playership = ai_game.playership
         self.game_stats = ai_game.game_stats
-        self.scoreboard = Scoreboard(self.ai_game)
-        self.PLB_rect = pygame.Rect(self.settings.screen_width-self.settings.PLB_width-50,
-                                                self.settings.screen_height - 20,
-                                                self.settings.PLB_width,
-                                                self.settings.PLB_height)
-        self.current_PLB_rect = self.PLB_rect.copy()
+        self.scoreboard = Scoreboard(self.ai_game)        
+        self.p_life_bar = self.playership.life_bar
         
-        
-
      def get_spawn_loc(self,alien_type):
          """获得新创建的外星人位置"""
          alien_type.rect.x = self.randint(0,self.settings.screen_width-alien_type.rect.width)
          alien_type.rect.y = 0 
 
-     def draw_life_Bar(self):
-        """绘制血条"""        
-        pygame.draw.rect(self.screen,self.settings.color_dark_RED,self.PLB_rect)
-        self.current_PLB_rect.width =int(self.PLB_rect.width*(self.ai_game.playership.life/self.settings.life_limit))
-        pygame.draw.rect(self.screen,self.settings.color_RED,self.current_PLB_rect)
     
-     
+     def check_score(self):
+        """检查玩家得分是否满足阶段要求"""
+        if self.game_stats.score >= self.settings.stage_score[self.game_stats.stage+1]:
+            self.game_stats.stage+=1
+            self.scoreboard.prep_stage()
+            print(f"stage up!{self.game_stats.stage}")
+            
+                 
      def _create_fleet(self):
         """创建外星人群"""
         #根据run_game循环次数创建一个外星人，并受到最大数量限制
-        self.ai_game.spawn_timer+=10
+        self.ai_game.spawn_timer+=(10*self.settings.stage_speed.get(self.game_stats.stage))
         if self.ai_game.spawn_timer >= self.settings.spawn_timer_set*50:            
             if len(self.aliens_fleet) < self.settings.aliens_allowed:            
                 for times in range(self.settings.create_max_attempts):
@@ -53,7 +49,10 @@ class Game_Events:
                         self.get_spawn_loc(alien)
                     #新创建的外星人不会与目前已有的外星人重叠
                     if not any(alien.rect.colliderect(existing_alien.rect) 
-                            for existing_alien in self.aliens_fleet):                    
+                            for existing_alien in self.aliens_fleet):
+                        alien.maxlife *= self.settings.aliens_life_incre[self.game_stats.stage]  
+                        alien.life_bar.life_limit = alien.maxlife
+                        alien.life = alien.maxlife                  
                         self.aliens_fleet.add(alien)
                         break
             self.ai_game.spawn_timer = 0
@@ -62,12 +61,15 @@ class Game_Events:
         """检查外星人碰撞相关信息"""        
         # 碰撞检测，删除子弹和被击中的外星人
         collisions = pygame.sprite.groupcollide(
-            self.playership.bullets, self.aliens_fleet,True,True)
+            self.playership.bullets, self.aliens_fleet,True,False)
         if collisions:
             total_score = 0
             for bullet, aliens in collisions.items():
-                for alien in aliens:
-                    total_score += alien.score   
+                for alien in aliens:                   
+                    alien.life-=1
+                    if alien.life<=0:
+                        alien.kill() 
+                        total_score += alien.score  
                 self.game_stats.score += total_score
                 self.scoreboard.prep_score()
         #检查外星人和墙壁碰撞
@@ -92,13 +94,11 @@ class Game_Events:
                     if bullet.rect.colliderect(self.playership.rect):
                         self.playership.life -= 5
                         bullet.kill()
-
     
      def check_life_change(self):
         """检查玩家生命值变化"""    
         if self.playership.life <= 0:
             self.ai_game.Dead = True 
-
 
      def update_screen(self):
         """绘制屏幕"""
@@ -110,19 +110,22 @@ class Game_Events:
         #绘制子弹
         for bullet in self.playership.bullets.sprites():
             bullet.draw_player_bullet()
-        #绘制玩家飞船和血量    
-        self.playership.blitme()
-        self.draw_life_Bar()
-        self.scoreboard.show_score()        
+                
         #绘制外星人          
         for alien in self.aliens_fleet.sprites():
-            alien.draw_alien() 
-            if type(alien) == Shooter:
+            alien.draw_alien()
+            alien.life_bar.rect.top = alien.rect.bottom
+            alien.life_bar.rect.left = alien.rect.left
+            alien.life_bar.draw_life_bar(self.settings.color_dark_RED,self.settings.color_RED,alien.life) 
+            if type(alien) == Shooter:                
                 for bullet in alien.bullets.sprites():
                     bullet.update()
-                    bullet.draw_Hbullet()   
-        
-     
+                    bullet.draw_Hbullet() 
+        #绘制玩家飞船和血量    
+        self.playership.blitme()
+        self.p_life_bar.draw_life_bar(self.settings.color_dark_RED,self.settings.color_RED,self.playership.life)
+        self.scoreboard.show_score()  
+             
      def draw_pause_lay(self):
          """绘制暂停界面"""
          while self.ai_game.transparency_count < self.settings.Pause_transparency:
@@ -132,4 +135,16 @@ class Game_Events:
             self.screen.blit(overlay,(0,0))
             pygame.display.flip()
             self.ai_game.transparency_count+=1
+
+     def create_button(self):
+         """创建游戏功能按钮"""
+         self.ai_game.pause_button = Button(400,250,400,250,'continue')
+         self.ai_game.pause_button.rect.centerx = self.screen.get_rect().width*1/3
+         self.ai_game.pause_button.rect.centery = self.screen.get_rect().height/2
+         self.ai_game.start_button = Button(600,400,200,150,'start')
+         self.ai_game.start_button.rect.center = self.screen.get_rect().center
+         self.ai_game.restart_button = Button(600,400,200,150,'restart')
+         self.ai_game.restart_button.rect.center = self.screen.get_rect().center
+         self.ai_game.restart_button.type = 2
+            
          
