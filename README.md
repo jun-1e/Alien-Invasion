@@ -38,7 +38,7 @@ software project.
 
 <img width="2006" height="1295" alt="屏幕截图 2026-09-15 215004" src="https://github.com/user-attachments/assets/5c98e919-b16b-47e1-a772-6a466c0a32a5" />
 
-##Project Structure
+
 ## Project Structure
 
 ```text
@@ -58,7 +58,7 @@ Alien_Invation/
 │   ├── button
 │   ├── Game_Stats
 │   ├── life_bar
-│   ├── scoreboard<img width="2010" height="1298" alt="屏幕截图 2026-09-15 220100" src="https://github.com/user-attachments/assets/97eb5dc7-3150-452e-84f3-5d5fc9945592" />
+│   ├── scoreboard
 
 │   └── settings
 │
@@ -87,9 +87,36 @@ Alien_Invation/
 - Pygame
 - Git / GitHub
 
-## How to Run
+## RoadMap
+### Completed
+- [x] Pause system
+- [x] Enemy shooting system
+- [x] Different enemy types
+- [x] Player health system (and visibility)
+- [x] Score system
+- [x] Level system
+- [x] Dynamic enemy HP and spawn speed
+- [x] Semi-transparent background with smooth transitions 
 
-please download all the files and run 'alien_invasion.py'
+### In Progress
+- [ ] Improve game UI
+- [ ] Refactor project structure
+- [ ] Improve code readability
+- [ ] High score display
+
+### Planned
+- [ ] Add game background
+- [ ] Add save/load system
+- [ ] Add more enemy types
+- [ ] Add additional gameplay mechanics
+- [ ] Improve difficulty progression
+- [ ] Restart button
+
+
+## How to Run
+1. Download or clone this repository.
+2. Make sure Python and Pygame are installed.
+3. Run `alien_invasion.py`.
 
 ### Clone
 
