@@ -8,7 +8,6 @@ class Button:
         self.text_color = (30,30,30)
         self.font = pygame.font.SysFont(None,48)
         self.prep_msg(msg)
-        self.type = 1
 
     def button_events(self,button_color_default,button_color_check):
         """按钮行为"""

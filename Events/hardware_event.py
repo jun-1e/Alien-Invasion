@@ -43,14 +43,19 @@ class Hardware_Event:
         
     def check_mouse_events(self,event):
         """响应鼠标动作"""
-        if not self.ai_game.Active:
-            pass
+        #if not self.ai_game.Active:
+            #pass
         if self.ai_game.Pause:
             if self.ai_game.pause_button.rect.collidepoint(pygame.mouse.get_pos()):
                 self.ai_game.Pause = not self.ai_game.Pause
-        if self.ai_game.Dead:
-            if self.ai_game.restart_button.rect.collidepoint(pygame.mouse.get_pos()):
+            if self.ai_game.restart_button2.rect.collidepoint(pygame.mouse.get_pos()):
                 self.ai_game.game_stats.reset_game()
+                self.ai_game.Pause = False
+        if self.ai_game.Dead:    
+            if  self.ai_game.restart_button.rect.collidepoint(pygame.mouse.get_pos()):
+                self.ai_game.game_stats.reset_game()               
+                print("123")
+                self.ai_game.Dead = False
     
     def check_keyup_events(self,event):
         """响应松开"""

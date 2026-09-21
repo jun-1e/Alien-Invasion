@@ -2,9 +2,9 @@ import pygame
 import sys
 from Public.settings import Settings
 from player_ship import Ship
+from Public.scoreboard import Scoreboard
 from Events.hardware_event import Hardware_Event
 from Events.game_events import Game_Events
-from Public.button import Button
 from Public.Game_Stats import game_stats
 
 class AlienInvasion:
@@ -25,10 +25,12 @@ class AlienInvasion:
         self.Pause = False
         self.Dead = False
         self.shooting = False
+        
         self.bullets = pygame.sprite.Group()
         self.aliens_fleet = pygame.sprite.Group()
         self.playership = Ship(self)
-        self.game_stats = game_stats()
+        self.game_stats = game_stats(self)
+        self.scoreboard = Scoreboard(self)
         self.event = Game_Events(self)        
         self.hardware_event = Hardware_Event(self)
         self.event.create_button()
@@ -57,38 +59,45 @@ class AlienInvasion:
         while self.Active:
             ##检查游戏是否处于运行状态，是则检查键盘鼠标行为及玩家生命
             self.hardware_event.check_events()
-            self.event.check_life_change() 
-
-            if not self.Dead:
-                if not self.Pause:
+                        
+            if (not self.Pause and not self.Dead):
                     #检查同时满足玩家没有死亡和游戏不处于暂停后,游戏进行                           
-                    self.playership.update()
-                    self.playership.fire_bullet()
-                    self.playership.update_bullet()
-                    self.event._check_collisions()
-                    self.event._create_fleet()
-                    self.aliens_fleet.update()
-                    self.event.check_score()
-                    self.event.update_screen()                                    
-                elif self.Pause:
-                    #绘制暂停页面                    
-                        self.event.draw_pause_lay()   
-                        self.pause_button.button_events((255,191,0),(141,105,0))
-                        self.pause_button.draw_button(self) 
-                        #self.restart_button.button_events((0,0,0),(0,0,0)) 暂停页面的重新开始游戏按钮                      
-            elif self.Dead:
+                self.playership.update()
+                self.playership.fire_bullet()
+                self.playership.update_bullet()
+                self.event._check_collisions()
+                self.event._create_fleet()
+                self.aliens_fleet.update()
+                self.event.check_score()
+                self.event.update_screen()
+                                                   
+            elif self.Pause:
+                #绘制暂停页面                    
+                self.event.draw_pause_lay()   
+                self.pause_button.button_events((255,191,0),(141,105,0))
+                self.pause_button.draw_button(self) 
+                self.restart_button2.button_events((255,191,0),(141,105,0))                    
+                self.restart_button2.draw_button(self)
+                self.hardware_event.check_events()
+                #self.restart_button.button_events((0,0,0),(0,0,0)) 暂停页面的重新开始游戏按钮
+                                      
+            if self.Dead:    
                 #更新最高分数
-                if self.game_stats.score>self.game_stats.high_score:
-                    self.game_stats.high_score=self.game_stats.score
-                    self.event.scoreboard.prep_highscore()
+                #if self.game_stats.score>self.game_stats.high_score:
+                    #self.game_stats.high_score=self.game_stats.score
+                    #self.event.scoreboard.prep_highscore()
                 #背景逐渐变暗效果    
                 while self.transparency_count < self.settings.Pause_transparency:
                     self.event.draw_pause_lay()
                     self.transparency_count+=1
+                    print("12")
                 #重新开始按钮
-                    self.restart_button.button_events((255,191,0),(141,105,0))
-                    self.restart_button.draw_button(self)
+                self.restart_button.button_events((255,191,0),(141,105,0))                    
+                self.restart_button.draw_button(self)
+                self.hardware_event.check_events()
+                
                     
+            self.event.check_life_change()                     
             pygame.display.flip()    
             self.clock.tick(60)
             

@@ -1,7 +1,6 @@
 import pygame
 from enemy.aliens import Alien
 from enemy.shooter import Shooter
-from Public.scoreboard import Scoreboard
 from random import randint
 from Public.button import Button
 
@@ -15,7 +14,7 @@ class Game_Events:
         self.aliens_fleet = ai_game.aliens_fleet
         self.playership = ai_game.playership
         self.game_stats = ai_game.game_stats
-        self.scoreboard = Scoreboard(self.ai_game)        
+        self.scoreboard = ai_game.scoreboard       
         self.p_life_bar = self.playership.life_bar
         
      def get_spawn_loc(self,alien_type):
@@ -28,7 +27,7 @@ class Game_Events:
         """检查玩家得分是否满足阶段要求"""
         if self.game_stats.score >= self.settings.stage_score[self.game_stats.stage+1]:
             self.game_stats.stage+=1
-            self.scoreboard.prep_stage()
+            
             print(f"stage up!{self.game_stats.stage}")
             
                  
@@ -71,7 +70,7 @@ class Game_Events:
                         alien.kill() 
                         total_score += alien.score  
                 self.game_stats.score += total_score
-                self.scoreboard.prep_score()
+                
         #检查外星人和墙壁碰撞
         for alien in self.aliens_fleet.copy():
             if alien.rect.bottom >= self.ai_game.screen.get_rect().bottom+20:
@@ -97,11 +96,13 @@ class Game_Events:
     
      def check_life_change(self):
         """检查玩家生命值变化"""    
-        if self.playership.life <= 0:
+        if self.ai_game.playership.life <= 0:
             self.ai_game.Dead = True 
 
      def update_screen(self):
         """绘制屏幕"""
+        self.scoreboard.prep_score()
+        self.scoreboard.prep_stage()
         #Shooter类敌人发射子弹
         for alien in self.aliens_fleet.copy():
             if type(alien) == Shooter:
@@ -145,6 +146,9 @@ class Game_Events:
          self.ai_game.start_button.rect.center = self.screen.get_rect().center
          self.ai_game.restart_button = Button(600,400,200,150,'restart')
          self.ai_game.restart_button.rect.center = self.screen.get_rect().center
-         self.ai_game.restart_button.type = 2
+         self.ai_game.restart_button2 = Button(600,400,200,150,'restart')
+         self.ai_game.restart_button2.rect.centerx = self.screen.get_rect().width*2/3
+         self.ai_game.restart_button2.rect.centery = self.screen.get_rect().height/2
+
             
          
