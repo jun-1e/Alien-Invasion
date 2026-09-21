@@ -96,7 +96,8 @@ Alien_Invation/
 - [x] Score system
 - [x] Level system
 - [x] Dynamic enemy HP and spawn speed
-- [x] Semi-transparent background with smooth transitions 
+- [x] Semi-transparent background with smooth transitions
+- [x] Restart button
 
 ### In Progress
 - [ ] Improve game UI
@@ -110,7 +111,7 @@ Alien_Invation/
 - [ ] Add more enemy types
 - [ ] Add additional gameplay mechanics
 - [ ] Improve difficulty progression
-- [ ] Restart button
+
 
 
 ## How to Run
