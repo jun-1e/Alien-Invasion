@@ -34,6 +34,7 @@ class AlienInvasion:
         self.event = Game_Events(self)        
         self.hardware_event = Hardware_Event(self)
         self.event.create_button()
+        self.event.load_game()
                         
     def run_game(self):
         """开始游戏主循环"""
@@ -41,6 +42,7 @@ class AlienInvasion:
             """游戏开始前进行事件检测"""
             self.screen.fill(self.settings.bg_color)
             self.start_button.button_events((0,142,255),(0,76,136))
+            self.scoreboard.prep_highscore()
             
             self.start_button.draw_button(self)
             for event in pygame.event.get():

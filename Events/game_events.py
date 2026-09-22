@@ -2,6 +2,7 @@ import pygame
 from enemy.aliens import Alien
 from enemy.shooter import Shooter
 from random import randint
+import json
 from Public.button import Button
 
 class Game_Events:
@@ -149,6 +150,22 @@ class Game_Events:
          self.ai_game.restart_button2 = Button(600,400,200,150,'restart')
          self.ai_game.restart_button2.rect.centerx = self.screen.get_rect().width*2/3
          self.ai_game.restart_button2.rect.centery = self.screen.get_rect().height/2
+
+     def save_game(self):
+         """保存游戏"""
+         data = {
+            "highscore" : self.ai_game.game_stats.high_score,
+            #"stage" : self.ai_game.game_stats.stage,
+            #"score" : self.ai_gae.game_stats.score,
+         }
+         with open("savefile.json","w") as file:
+             json.dump(data,file,indent=4)
+
+     def load_game(self):
+         """读取游戏"""
+         with open("savefile.json","r") as file:
+             data = json.load(file)
+         self.ai_game.game_stats.high_score = data["highscore"]
 
             
          

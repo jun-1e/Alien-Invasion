@@ -13,6 +13,7 @@ class Hardware_Event:
         """侦听键盘和鼠标事件"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                self.ai_game.event.save_game()
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self.check_keydown_events(event)
