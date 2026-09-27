@@ -92,7 +92,7 @@ class AlienInvasion:
                 while self.transparency_count < self.settings.Pause_transparency:
                     self.event.draw_pause_lay()
                     self.transparency_count+=1
-                    print("12")
+                    
                 #重新开始按钮
                 self.restart_button.button_events((255,191,0),(141,105,0))                    
                 self.restart_button.draw_button(self)
@@ -101,7 +101,8 @@ class AlienInvasion:
                     
             self.event.check_life_change()                     
             pygame.display.flip()    
-            self.clock.tick(60)
+            self.clock.tick(60)            
+        self.event.save_game()
             
 if __name__ == '__main__':
     #创建游戏实例并运行游戏

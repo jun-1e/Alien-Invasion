@@ -13,6 +13,7 @@ class game_stats:
 
     def reset_game(self):
         """重置游戏"""
+        print(self.ai_game.game_stats.high_score)
         if self.ai_game.Dead:
             self.ai_game.Dead = False
         if self.ai_game.Pause:
@@ -23,6 +24,5 @@ class game_stats:
         self.playership.rect.midbottom = self.playership.screen_rect.midbottom
         self.playership.x = float(self.playership.rect.x)
         self.playership.y = float(self.playership.rect.y)
-        print("321")
         
         

@@ -43,18 +43,22 @@ class Hardware_Event:
             
         
     def check_mouse_events(self,event):
-        """响应鼠标动作"""
+        """鼠标与按钮在暂停与死亡时的点击互动"""
         #if not self.ai_game.Active:
             #pass
         if self.ai_game.Pause:
             if self.ai_game.pause_button.rect.collidepoint(pygame.mouse.get_pos()):
                 self.ai_game.Pause = not self.ai_game.Pause
             if self.ai_game.restart_button2.rect.collidepoint(pygame.mouse.get_pos()):
+                self.ai_game.event.save_game()
+                self.ai_game.scoreboard.prep_highscore() 
                 self.ai_game.game_stats.reset_game()
                 self.ai_game.Pause = False
         if self.ai_game.Dead:    
             if  self.ai_game.restart_button.rect.collidepoint(pygame.mouse.get_pos()):
-                self.ai_game.game_stats.reset_game()               
+                self.ai_game.game_stats.reset_game()
+                self.ai_game.event.save_game() 
+                self.ai_game.scoreboard.prep_highscore()              
                 print("123")
                 self.ai_game.Dead = False
     

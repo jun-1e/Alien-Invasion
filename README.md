@@ -98,19 +98,21 @@ Alien_Invation/
 - [x] Dynamic enemy HP and spawn speed
 - [x] Semi-transparent background with smooth transitions
 - [x] Restart button
+- [x] High score display
 
 ### In Progress
 - [ ] Improve game UI
 - [ ] Refactor project structure
 - [ ] Improve code readability
-- [ ] High score display
+- [ ] Improve difficulty progression
+
 
 ### Planned
 - [ ] Add game background
 - [ ] Add save/load system
 - [ ] Add more enemy types
 - [ ] Add additional gameplay mechanics
-- [ ] Improve difficulty progression
+
 
 
 

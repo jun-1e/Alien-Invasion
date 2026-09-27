@@ -28,8 +28,11 @@ class Game_Events:
         """检查玩家得分是否满足阶段要求"""
         if self.game_stats.score >= self.settings.stage_score[self.game_stats.stage+1]:
             self.game_stats.stage+=1
-            
             print(f"stage up!{self.game_stats.stage}")
+        if self.game_stats.score > self.game_stats.high_score:
+            self.game_stats.high_score = self.game_stats.score
+            
+            
             
                  
      def _create_fleet(self):
@@ -140,13 +143,17 @@ class Game_Events:
 
      def create_button(self):
          """创建游戏功能按钮"""
+         #继续游戏按钮
          self.ai_game.pause_button = Button(400,250,400,250,'continue')
          self.ai_game.pause_button.rect.centerx = self.screen.get_rect().width*1/3
          self.ai_game.pause_button.rect.centery = self.screen.get_rect().height/2
+         #开始游戏按钮
          self.ai_game.start_button = Button(600,400,200,150,'start')
          self.ai_game.start_button.rect.center = self.screen.get_rect().center
+         #生命值耗尽界面的暂停按钮
          self.ai_game.restart_button = Button(600,400,200,150,'restart')
          self.ai_game.restart_button.rect.center = self.screen.get_rect().center
+         #暂停界面的restart按钮
          self.ai_game.restart_button2 = Button(600,400,200,150,'restart')
          self.ai_game.restart_button2.rect.centerx = self.screen.get_rect().width*2/3
          self.ai_game.restart_button2.rect.centery = self.screen.get_rect().height/2
