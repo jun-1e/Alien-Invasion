@@ -8,7 +8,7 @@ class Shooter(Alien):
     def __init__(self,ai_game):
         """初始化外星人位置""" 
         super().__init__(ai_game)
-        self.image = pygame.image.load('resource/Images/Shooter.bmp')
+        self.image = ai_game.prep_Pic.prep_shooter()
         self.rect = self.image.get_rect()
         self.bullets = pygame.sprite.Group()
         self.shooting_cooldown = self.settings.Shooter_cooldown

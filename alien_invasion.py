@@ -1,10 +1,9 @@
 import pygame
 import sys
 from Public.settings import Settings
+from Events import *
 from player_ship import Ship
 from Public.scoreboard import Scoreboard
-from Events.hardware_event import Hardware_Event
-from Events.game_events import Game_Events
 from Public.Game_Stats import game_stats
 
 class AlienInvasion:
@@ -25,7 +24,8 @@ class AlienInvasion:
         self.Pause = False
         self.Dead = False
         self.shooting = False
-        
+
+        self.prep_Pic = prep_Pic(self)
         self.bullets = pygame.sprite.Group()
         self.aliens_fleet = pygame.sprite.Group()
         self.playership = Ship(self)
@@ -33,6 +33,7 @@ class AlienInvasion:
         self.scoreboard = Scoreboard(self)
         self.event = Game_Events(self)        
         self.hardware_event = Hardware_Event(self)
+
         self.event.create_button()
         self.event.load_game()
                         
@@ -56,7 +57,7 @@ class AlienInvasion:
             if self.Active: 
                 break
             pygame.display.flip()    
-            self.clock.tick(60)
+            self.clock.tick(80)
                    
         while self.Active:
             ##检查游戏是否处于运行状态，是则检查键盘鼠标行为及玩家生命
@@ -72,6 +73,7 @@ class AlienInvasion:
                 self.aliens_fleet.update()
                 self.event.check_score()
                 self.event.update_screen()
+               
                                                    
             elif self.Pause:
                 #绘制暂停页面                    
@@ -101,7 +103,7 @@ class AlienInvasion:
                     
             self.event.check_life_change()                     
             pygame.display.flip()    
-            self.clock.tick(60)            
+            self.clock.tick(80)            
         self.event.save_game()
             
 if __name__ == '__main__':
