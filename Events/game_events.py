@@ -17,6 +17,10 @@ class Game_Events:
         self.game_stats = ai_game.game_stats
         self.scoreboard = ai_game.scoreboard       
         self.p_life_bar = self.playership.life_bar
+        self.bg_ori = self.ai_game.prep_Pic.prep_bg(self.ai_game.game_stats.stage)
+        self.bg = pygame.transform.scale(self.bg_ori,
+                                                     (self.settings.screen_width, self.settings.screen_height))
+         
         
      def get_spawn_loc(self,alien_type):
          """获得新创建的外星人位置"""
@@ -28,6 +32,10 @@ class Game_Events:
         """检查玩家得分是否满足阶段要求"""
         if self.game_stats.score >= self.settings.stage_score[self.game_stats.stage+1]:
             self.game_stats.stage+=1
+            self.bg = self.ai_game.prep_Pic.prep_bg(self.ai_game.game_stats.stage)
+            self.bg = pygame.transform.scale(self.bg,
+                                             (self.settings.screen_width, self.settings.screen_height))
+            pygame.display.flip()
             print(f"stage up!{self.game_stats.stage}")
         if self.game_stats.score > self.game_stats.high_score:
             self.game_stats.high_score = self.game_stats.score
@@ -105,13 +113,14 @@ class Game_Events:
 
      def update_screen(self):
         """绘制屏幕"""
+        self.screen.blit(self.bg,(0,0))
+
         self.scoreboard.prep_score()
         self.scoreboard.prep_stage()
         #Shooter类敌人发射子弹
         for alien in self.aliens_fleet.copy():
             if type(alien) == Shooter:
                 alien.shoot()
-        self.screen.fill(self.settings.bg_color)
         #绘制子弹
         for bullet in self.playership.bullets.sprites():
             bullet.draw_player_bullet()
@@ -119,8 +128,7 @@ class Game_Events:
         #绘制外星人          
         for alien in self.aliens_fleet.sprites():
             alien.draw_alien()
-            alien.life_bar.rect.top = alien.rect.bottom
-            alien.life_bar.rect.left = alien.rect.left
+            alien.life_bar.rect.midtop = alien.rect.midbottom
             alien.life_bar.draw_life_bar(self.settings.color_dark_RED,self.settings.color_RED,alien.life) 
             if type(alien) == Shooter:                
                 for bullet in alien.bullets.sprites():
@@ -129,7 +137,9 @@ class Game_Events:
         #绘制玩家飞船和血量    
         self.playership.blitme()
         self.p_life_bar.draw_life_bar(self.settings.color_dark_RED,self.settings.color_RED,self.playership.life)
-        self.scoreboard.show_score()  
+        self.scoreboard.show_score()
+        pygame.display.flip()
+
              
      def draw_pause_lay(self):
          """绘制暂停界面"""
@@ -148,13 +158,13 @@ class Game_Events:
          self.ai_game.pause_button.rect.centerx = self.screen.get_rect().width*1/3
          self.ai_game.pause_button.rect.centery = self.screen.get_rect().height/2
          #开始游戏按钮
-         self.ai_game.start_button = Button(600,400,200,150,'start')
+         self.ai_game.start_button = Button(600,400,600,75,'New Game')
          self.ai_game.start_button.rect.center = self.screen.get_rect().center
          #生命值耗尽界面的暂停按钮
          self.ai_game.restart_button = Button(600,400,200,150,'restart')
          self.ai_game.restart_button.rect.center = self.screen.get_rect().center
          #暂停界面的restart按钮
-         self.ai_game.restart_button2 = Button(600,400,200,150,'restart')
+         self.ai_game.restart_button2 = Button(600,400,400,250,'restart')
          self.ai_game.restart_button2.rect.centerx = self.screen.get_rect().width*2/3
          self.ai_game.restart_button2.rect.centery = self.screen.get_rect().height/2
 

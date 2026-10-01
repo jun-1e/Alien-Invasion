@@ -19,8 +19,8 @@ class Alien(Sprite):
         self.life = 1
         
         self.xdirection = randint(0,1)*2-1
-        #加载外星人图像并获取其外接矩形
-        self.image = pygame.image.load('resource/Images/shiip_2 (2).bmp')
+        #加载外星人图像并获取其外接矩形       
+        self.image = ai_game.prep_Pic.prep_alien()
         self.rect = self.image.get_rect()
         self.life_bar = Life_Bar(self.rect.left,self.rect.bottom,self.screen,
                                  self.settings.enemy_lfbar_width,

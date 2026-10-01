@@ -20,7 +20,7 @@ class Ship:
                                     self.settings.PLB_height,self.settings.life_limit)
 
         #加载飞船图像并获取其外接矩形
-        self.image = pygame.image.load('resource/Images/shiip_2 (2).bmp')
+        self.image = ai_game.prep_Pic.prep_player()
         self.rect = self.image.get_rect()
 
         #每艘飞船都出现在屏幕底部中央
