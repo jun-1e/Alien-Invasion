@@ -19,7 +19,7 @@ class Game_Events:
         self.p_life_bar = self.playership.life_bar
         self.bg_ori = self.ai_game.prep_Pic.prep_bg(self.ai_game.game_stats.stage)
         self.bg = pygame.transform.scale(self.bg_ori,
-                                                     (self.settings.screen_width, self.settings.screen_height))
+                                    (self.settings.screen_width, self.settings.screen_height))
          
         
      def get_spawn_loc(self,alien_type):
@@ -34,15 +34,14 @@ class Game_Events:
             self.game_stats.stage+=1
             self.bg = self.ai_game.prep_Pic.prep_bg(self.ai_game.game_stats.stage)
             self.bg = pygame.transform.scale(self.bg,
-                                             (self.settings.screen_width, self.settings.screen_height))
+                                    (self.settings.screen_width, self.settings.screen_height))
+            self.bg.set_alpha(0)
             pygame.display.flip()
             print(f"stage up!{self.game_stats.stage}")
         if self.game_stats.score > self.game_stats.high_score:
             self.game_stats.high_score = self.game_stats.score
             
-            
-            
-                 
+                            
      def _create_fleet(self):
         """创建外星人群"""
         #根据run_game循环次数创建一个外星人，并受到最大数量限制
@@ -113,7 +112,10 @@ class Game_Events:
 
      def update_screen(self):
         """绘制屏幕"""
+        self.screen.fill((100,100,100))
         self.screen.blit(self.bg,(0,0))
+        if self.bg.get_alpha() < 175 :    
+            self.bg.set_alpha(self.bg.get_alpha()+3)
 
         self.scoreboard.prep_score()
         self.scoreboard.prep_stage()

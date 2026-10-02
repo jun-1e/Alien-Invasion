@@ -3,7 +3,8 @@
 > A 2D shooting game developed with Python and Pygame.
 
 
-<img width="2013" height="1300" alt="屏幕截图 2026-09-15 214949" src="https://github.com/user-attachments/assets/2158e615-a400-49ae-99d9-a65f1707eda7" />
+![截图](./resource/intro/play_view.png)
+
 
 
 
@@ -31,12 +32,12 @@ software project.
 
 ### Gameplay
 
-<img width="2010" height="1298" alt="屏幕截图 2026-09-15 220100" src="https://github.com/user-attachments/assets/f413e4e9-a001-4acc-a763-a1a56e10dba1" />
+![截图](./resource/intro/play_view2.png)
 
 
 ### Pause Menu
 
-<img width="2006" height="1295" alt="屏幕截图 2026-09-15 215004" src="https://github.com/user-attachments/assets/5c98e919-b16b-47e1-a772-6a466c0a32a5" />
+![截图](./resource/intro/Pause_menu.png)
 
 
 ## Project Structure
