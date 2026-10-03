@@ -41,7 +41,7 @@ class AlienInvasion:
         """开始游戏主循环"""
         while True:
             """游戏开始前进行事件检测"""
-            self.screen.fill(self.settings.bg_color)
+            self.screen.blit(self.prep_Pic.bg["0"],(0,0))
             self.start_button.button_events((0,142,255),(0,76,136))
             self.scoreboard.prep_highscore()
             

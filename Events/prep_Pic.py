@@ -21,6 +21,9 @@ class prep_Pic:
         # self.bg_3 = pygame.image.load('resource/Images/BG/stage_3.png').convert_alpha()
         # self.bg_4 = pygame.image.load('resource/Images/BG/stage_4.png').convert_alpha()
 
+        self.btm_img = pygame.image.load('resource/Images/borders/button.png').convert_alpha()
+        
+
     def prep_player(self):
         player_img = self.player_img_ori
         return player_img
@@ -36,4 +39,8 @@ class prep_Pic:
     def prep_bg(self,stage):
         bg = self.bg[str(stage)]
         return bg
+
+    def prep_button(self):
+        button_img = self.btm_img
+        return button_img
     

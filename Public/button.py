@@ -1,13 +1,16 @@
 import pygame
 from Public.settings import Settings
 import pygame.font
+from Events.prep_Pic import prep_Pic
+
 class Button:
-    def __init__(self,pos_x,pos_y,width,height,msg):
+    def __init__(self,pos_x,pos_y,width,height,msg,ai_game):
         self.setting = Settings()
         self.rect = pygame.Rect(pos_x,pos_y,width,height)
         self.text_color = (30,30,30)
         self.font = pygame.font.SysFont(None,48)
         self.prep_msg(msg)
+        self.button_img = ai_game.prep_Pic.prep_button()
 
     def button_events(self,button_color_default,button_color_check):
         """按钮行为"""
@@ -26,7 +29,7 @@ class Button:
             
     def draw_button(self,ai_game):
         """绘制按钮"""
-        pygame.draw.rect(ai_game.screen,self.button_color,self.rect)
+        ai_game.screen.blit(self.button_img,(self.rect))
         self.msg_image_rect.center = self.rect.center
         ai_game.screen.blit(self.msg_image,self.msg_image_rect)
 

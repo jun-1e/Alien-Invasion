@@ -100,6 +100,7 @@ Alien_Invation/
 - [x] Semi-transparent background with smooth transitions
 - [x] Restart button
 - [x] High score display
+- [x] Add game background
 
 ### In Progress
 - [ ] Improve game UI
@@ -109,7 +110,7 @@ Alien_Invation/
 
 
 ### Planned
-- [ ] Add game background
+
 - [ ] Add save/load system
 - [ ] Add more enemy types
 - [ ] Add additional gameplay mechanics
