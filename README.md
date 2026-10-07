@@ -22,11 +22,12 @@ software project.
 - Player and enemy health systems
 - Collision detection
 - Score system
-- High-score system(developing)
+- High-score system
 - Level progression
 - Dynamic enemy difficulty
 - Pause system
 - Interactive buttons
+- Switch background picture in each stage
 
 ## Screenshots
 
@@ -37,7 +38,7 @@ software project.
 
 ### Pause Menu
 
-![截图](./resource/intro/Pause_menu.png)
+![截图](./resource/intro/pause_menu.png)
 
 
 ## Project Structure
@@ -50,6 +51,8 @@ Alien_Invation/
 │
 ├── Events/
 │   ├── game_events
+│   ├──slice
+│   ├──prep_Pic
 │   └── hardware_event
 │
 ├── Public/
@@ -60,24 +63,19 @@ Alien_Invation/
 │   ├── Game_Stats
 │   ├── life_bar
 │   ├── scoreboard
-
 │   └── settings
 │
 ├── resource/
 │   └── Images/
-│       ├── Gemini_Generated_Image_u2eywyu2eywyu2ey.png
-│       ├── shiip.bmp
-│       ├── shiip_1.bmp
-│       ├── shiip_2 (2).bmp
-│       ├── shiip_2.bmp
-│       ├── Shooter.bmp
-│       └── Shooter.png
+│       ├── intro/(...)
+│       └── resources/(...)
+├──doc/
+│   ├──architecture
+│   └──development-log
 │
 ├── alien_invasion.py
 ├── player_ship.py
-├── architecture.md
-├── DEVELOPE.txt
-├── 123123123
+├──savefile.json
 └── README.md
 ```
 
@@ -101,6 +99,7 @@ Alien_Invation/
 - [x] Restart button
 - [x] High score display
 - [x] Add game background
+- [x] refactor button arts
 
 ### In Progress
 - [ ] Improve game UI

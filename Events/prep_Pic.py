@@ -1,4 +1,5 @@
 import pygame
+from Events.slice import nine_slice
 
 class prep_Pic:
     def __init__(self,ai_game):
@@ -21,7 +22,7 @@ class prep_Pic:
         # self.bg_3 = pygame.image.load('resource/Images/BG/stage_3.png').convert_alpha()
         # self.bg_4 = pygame.image.load('resource/Images/BG/stage_4.png').convert_alpha()
 
-        self.btm_img = pygame.image.load('resource/Images/borders/button.png').convert_alpha()
+        self.btm_img_ori = pygame.image.load('resource/Images/borders/button.png').convert_alpha()
         
 
     def prep_player(self):
@@ -40,7 +41,7 @@ class prep_Pic:
         bg = self.bg[str(stage)]
         return bg
 
-    def prep_button(self):
-        button_img = self.btm_img
+    def prep_button(self,width,height):
+        button_img = nine_slice(self.btm_img_ori,width,height,border=24)
         return button_img
     

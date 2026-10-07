@@ -51,6 +51,6 @@ class Settings:
         self.enemy_lfbar_width = 100
         self.enemy_lfbar_height = 5
             #shooter
-        self.Shooter_cooldown = 100 
+        self.Shooter_cooldown = 200 
 
          

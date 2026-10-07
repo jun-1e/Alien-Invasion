@@ -41,8 +41,10 @@ class AlienInvasion:
         """开始游戏主循环"""
         while True:
             """游戏开始前进行事件检测"""
-            self.screen.blit(self.prep_Pic.bg["0"],(0,0))
-            self.start_button.button_events((0,142,255),(0,76,136))
+            self.bg0 = pygame.transform.smoothscale(self.prep_Pic.bg["0"],
+                                                (self.settings.screen_width, self.settings.screen_height))
+            self.screen.blit(self.bg0,(0,0))
+            self.start_button.button_events()
             self.scoreboard.prep_highscore()
             
             self.start_button.draw_button(self)
@@ -78,12 +80,11 @@ class AlienInvasion:
             elif self.Pause:
                 #绘制暂停页面                    
                 self.event.draw_pause_lay()   
-                self.pause_button.button_events((255,191,0),(141,105,0))
+                self.pause_button.button_events()
                 self.pause_button.draw_button(self) 
-                self.restart_button2.button_events((255,191,0),(141,105,0))                    
+                self.restart_button2.button_events()                    
                 self.restart_button2.draw_button(self)
                 self.hardware_event.check_events()
-                #self.restart_button.button_events((0,0,0),(0,0,0)) 暂停页面的重新开始游戏按钮
                                       
             if self.Dead:    
                 #更新最高分数
@@ -96,7 +97,7 @@ class AlienInvasion:
                     self.transparency_count+=1
                     
                 #重新开始按钮
-                self.restart_button.button_events((255,191,0),(141,105,0))                    
+                self.restart_button.button_events()                    
                 self.restart_button.draw_button(self)
                 self.hardware_event.check_events()
                 

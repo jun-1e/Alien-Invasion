@@ -18,8 +18,8 @@ class Game_Events:
         self.scoreboard = ai_game.scoreboard       
         self.p_life_bar = self.playership.life_bar
         self.bg_ori = self.ai_game.prep_Pic.prep_bg(self.ai_game.game_stats.stage)
-        self.bg = pygame.transform.scale(self.bg_ori,
-                                    (self.settings.screen_width, self.settings.screen_height))
+        self.bg = pygame.transform.smoothscale(self.bg_ori,
+                                     (self.settings.screen_width, self.settings.screen_height))
          
         
      def get_spawn_loc(self,alien_type):
@@ -33,7 +33,7 @@ class Game_Events:
         if self.game_stats.score >= self.settings.stage_score[self.game_stats.stage+1]:
             self.game_stats.stage+=1
             self.bg = self.ai_game.prep_Pic.prep_bg(self.ai_game.game_stats.stage)
-            self.bg = pygame.transform.scale(self.bg,
+            self.bg = pygame.transform.smoothscale(self.bg,
                                     (self.settings.screen_width, self.settings.screen_height))
             self.bg.set_alpha(0)
             pygame.display.flip()
@@ -156,19 +156,21 @@ class Game_Events:
      def create_button(self):
          """创建游戏功能按钮"""
          #继续游戏按钮
-         self.ai_game.pause_button = Button(400,250,400,250,'continue',self.ai_game)
-         self.ai_game.pause_button.rect.centerx = self.screen.get_rect().width*1/3
-         self.ai_game.pause_button.rect.centery = self.screen.get_rect().height/2
+         self.ai_game.pause_button = Button(self.screen.get_rect().width*1/3,
+                                            self.screen.get_rect().height/2,
+                                            400,250,'continue',self.ai_game)
          #开始游戏按钮
-         self.ai_game.start_button = Button(600,400,600,75,'New Game',self.ai_game)
-         self.ai_game.start_button.rect.center = self.screen.get_rect().center
-         #生命值耗尽界面的暂停按钮
-         self.ai_game.restart_button = Button(600,400,200,150,'restart',self.ai_game)
-         self.ai_game.restart_button.rect.center = self.screen.get_rect().center
+         self.ai_game.start_button = Button(self.screen.get_rect().centerx,
+                                            self.screen.get_rect().centery,
+                                            600,75,'New Game',self.ai_game) 
+         #生命值耗尽界面的重新开始按钮
+         self.ai_game.restart_button = Button(self.screen.get_rect().centerx,
+                                              self.screen.get_rect().centery,
+                                              200,150,'restart',self.ai_game)
          #暂停界面的restart按钮
-         self.ai_game.restart_button2 = Button(600,400,400,250,'restart',self.ai_game)
-         self.ai_game.restart_button2.rect.centerx = self.screen.get_rect().width*2/3
-         self.ai_game.restart_button2.rect.centery = self.screen.get_rect().height/2
+         self.ai_game.restart_button2 = Button(self.screen.get_rect().width*2/3,
+                                               self.screen.get_rect().height/2,
+                                               400,250,'restart',self.ai_game)
 
      def save_game(self):
          """保存游戏"""

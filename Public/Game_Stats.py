@@ -13,13 +13,16 @@ class game_stats:
 
     def reset_game(self):
         """重置游戏"""
-        print(self.ai_game.game_stats.high_score)
         if self.ai_game.Dead:
             self.ai_game.Dead = False
         if self.ai_game.Pause:
             self.ai_game.Pause = False
         self.ai_game.game_stats.score = 0
         self.ai_game.game_stats.stage = 0
+        self.ai_game.event.bg = self.ai_game.prep_Pic.prep_bg(self.ai_game.game_stats.stage)
+        self.ai_game.event.bg = pygame.transform.smoothscale(self.ai_game.event.bg,
+                                    (self.setting.screen_width, self.setting.screen_height))
+        self.ai_game.aliens_fleet.empty()
         self.playership.life = 200
         self.playership.rect.midbottom = self.playership.screen_rect.midbottom
         self.playership.x = float(self.playership.rect.x)
