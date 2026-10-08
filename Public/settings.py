@@ -9,7 +9,7 @@ class Settings:
         self.scorePad_height = 40
 
         #游戏等级设置
-        self.stage_score = {0:0,1:30,2:50,3:100,4:200,5:400,6:800,7:1500}
+        self.stage_score = {0:0,1:50,2:100,3:200,4:300,5:400,6:800,7:1500}
         ######speed_3_test
         self.stage_speed = {0:1,1:1,2:1.2,3:2,4:2.5,5:3,6:4,7:5.5} 
         self.aliens_life_incre = {0:1,1:1,2:2,3:3,4:4,5:5,6:6,7:7}

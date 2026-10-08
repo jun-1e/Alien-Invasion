@@ -36,13 +36,13 @@ class AlienInvasion:
 
         self.event.create_button()
         self.event.load_game()
+        self.bg0 = pygame.transform.smoothscale(self.prep_Pic.bg["0"],
+                            (self.settings.screen_width, self.settings.screen_height))
                         
     def run_game(self):
         """开始游戏主循环"""
         while True:
-            """游戏开始前进行事件检测"""
-            self.bg0 = pygame.transform.smoothscale(self.prep_Pic.bg["0"],
-                                                (self.settings.screen_width, self.settings.screen_height))
+            """游戏开始前进行事件检测"""            
             self.screen.blit(self.bg0,(0,0))
             self.start_button.button_events()
             self.scoreboard.prep_highscore()
