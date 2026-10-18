@@ -139,6 +139,7 @@ class Game_Events:
         #绘制玩家飞船和血量    
         self.playership.blitme()
         self.p_life_bar.draw_life_bar(self.settings.color_dark_RED,self.settings.color_RED,self.playership.life)
+        #self.screen.blit(self.ai_game.prep_Pic.prep_lfb_tex(),self.p_life_bar.rect)血条纹理
         self.scoreboard.show_score()
         pygame.display.flip()
 

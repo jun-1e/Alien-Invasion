@@ -7,6 +7,7 @@ class prep_Pic:
         self.screen = ai_game.screen
         #玩家图像
         self.player_img_ori = pygame.image.load('resource/Images/Big/ship_G.png').convert_alpha()
+        #self.lifebar_img_ori = pygame.image.load('resource/Images/borders/lifebar.png').convert_alpha()
         #敌人图像
         self.shooter_img_ori = pygame.image.load('resource/Images/Big/enemy_C.png').convert_alpha()
         self.alien_img_ori = pygame.image.load('resource/Images/Big/enemy_D.png').convert_alpha()
@@ -18,13 +19,11 @@ class prep_Pic:
             "3": pygame.image.load('resource/Images/BG/stage_3.png').convert_alpha(),
             "4": pygame.image.load('resource/Images/BG/stage_4.png').convert_alpha(),
             "5": pygame.image.load('resource/Images/BG/stage_5.png').convert_alpha(),
-            "6": pygame.image.load('resource/Images/BG/stage_6.png').convert_alpha()
+            "6": pygame.image.load('resource/Images/BG/stage_6.png').convert_alpha(),
         }
         # self.bg_1 = pygame.image.load('resource/Images/BG/stage_1.png').convert_alpha()
         # self.bg_2 = pygame.image.load('resource/Images/BG/stage_2.png').convert_alpha()
-        # self.bg_3 = pygame.image.load('resource/Images/BG/stage_3.png').convert_alpha()
-        # self.bg_4 = pygame.image.load('resource/Images/BG/stage_4.png').convert_alpha()
-
+        
         self.btm_img_ori = pygame.image.load('resource/Images/borders/button.png').convert_alpha()
         
 
@@ -47,4 +46,9 @@ class prep_Pic:
     def prep_button(self,width,height):
         button_img = nine_slice(self.btm_img_ori,width,height,border=24)
         return button_img
+
+    # def prep_lfb_tex(self):
+    #     lfb_tex = self.lifebar_img_ori
+    #     return lfb_tex
+    
     
