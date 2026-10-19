@@ -2,9 +2,7 @@ import pygame
 from Events.slice import nine_slice
 
 class prep_Pic:
-    def __init__(self,ai_game):
-        self.ai_game = ai_game
-        self.screen = ai_game.screen
+    def __init__(self):
         #玩家图像
         self.player_img_ori = pygame.image.load('resource/Images/Big/ship_G.png').convert_alpha()
         #self.lifebar_img_ori = pygame.image.load('resource/Images/borders/lifebar.png').convert_alpha()
@@ -25,6 +23,9 @@ class prep_Pic:
         # self.bg_2 = pygame.image.load('resource/Images/BG/stage_2.png').convert_alpha()
         
         self.btm_img_ori = pygame.image.load('resource/Images/borders/button.png').convert_alpha()
+
+        self.player_bul_1 = pygame.image.load('resource/Images/player_bullet_1.png').convert_alpha()
+        self.enemy_bul = pygame.image.load('resource/Images/enemy_bullet.png').convert_alpha()
         
 
     def prep_player(self):
@@ -46,6 +47,11 @@ class prep_Pic:
     def prep_button(self,width,height):
         button_img = nine_slice(self.btm_img_ori,width,height,border=24)
         return button_img
+
+    # def prep_bul(self,user):
+    #     match user:
+    #         case player:               
+    #     bul_img = 
 
     # def prep_lfb_tex(self):
     #     lfb_tex = self.lifebar_img_ori

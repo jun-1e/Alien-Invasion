@@ -1,10 +1,8 @@
 class Settings:
     def __init__(self):
         """初始化游戏设置"""
-        self.Button_color_default = (255,191,0)
-        self.Button_color_check = (141,105,0)
-        self.color_RED = (255,0,0)
-        self.color_dark_RED = (138,0,0)
+        self.RED = (255,0,0)
+        self.DARK_RED = (138,0,0)
         self.scorePad_width = 500
         self.scorePad_height = 40
 

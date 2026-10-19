@@ -25,7 +25,7 @@ class AlienInvasion:
         self.Dead = False
         self.shooting = False
 
-        self.prep_Pic = prep_Pic(self)
+        self.prep_Pic = prep_Pic()
         self.bullets = pygame.sprite.Group()
         self.aliens_fleet = pygame.sprite.Group()
         self.playership = Ship(self)
@@ -38,6 +38,7 @@ class AlienInvasion:
         self.event.load_game()
         self.bg0 = pygame.transform.smoothscale(self.prep_Pic.bg["0"],
                             (self.settings.screen_width, self.settings.screen_height))
+ 
                         
     def run_game(self):
         """开始游戏主循环"""

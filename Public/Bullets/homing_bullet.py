@@ -3,10 +3,10 @@ from Public.settings import Settings
 from pygame.sprite import Sprite
 
 class Homing_Bullet(Sprite):
-    def __init__(self,ai_game,shooter,target_pos):
+    def __init__(self,game,shooter,target_pos):
         super().__init__()
         self.setting = Settings()
-        self.screen = ai_game.screen
+        self.screen = game.screen
         self.rect = pygame.Rect(0,0,self.setting.bullet_width,
                                 self.setting.bullet_width)
         self.rect.center = shooter.rect.center
@@ -29,6 +29,6 @@ class Homing_Bullet(Sprite):
             
     def draw_Hbullet(self):
         """在屏幕上绘制子弹"""
-        pygame.draw.circle(self.screen,self.setting.color_RED,self.rect.center,5)
+        pygame.draw.circle(self.screen,self.setting.RED,self.rect.center,5)
         
 

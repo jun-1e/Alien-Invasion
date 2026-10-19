@@ -3,9 +3,9 @@ from Public.settings import Settings
 
 class game_stats:
     """管理游戏内数值变化的类"""
-    def __init__(self,ai_game):
-        self.ai_game = ai_game
-        self.playership = ai_game.playership
+    def __init__(self,game):
+        self.game = game
+        self.plyship = game.playership
         self.setting = Settings()
         self.score = 0
         self.stage = 0
@@ -13,19 +13,19 @@ class game_stats:
 
     def reset_game(self):
         """重置游戏"""
-        if self.ai_game.Dead:
-            self.ai_game.Dead = False
-        if self.ai_game.Pause:
-            self.ai_game.Pause = False
-        self.ai_game.game_stats.score = 0
-        self.ai_game.game_stats.stage = 0
-        self.ai_game.event.bg = self.ai_game.prep_Pic.prep_bg(self.ai_game.game_stats.stage)
-        self.ai_game.event.bg = pygame.transform.smoothscale(self.ai_game.event.bg,
+        if self.game.Dead:
+            self.game.Dead = False
+        if self.game.Pause:
+            self.game.Pause = False
+        self.game.game_stats.score = 0
+        self.game.game_stats.stage = 0
+        self.game.event.bg = self.game.prep_Pic.prep_bg(self.game.game_stats.stage)
+        self.game.event.bg = pygame.transform.smoothscale(self.game.event.bg,
                                     (self.setting.screen_width, self.setting.screen_height))
-        self.ai_game.aliens_fleet.empty()
-        self.playership.life = 200
-        self.playership.rect.midbottom = self.playership.screen_rect.midbottom
-        self.playership.x = float(self.playership.rect.x)
-        self.playership.y = float(self.playership.rect.y)
+        self.game.aliens_fleet.empty()
+        self.plyship.life = 200
+        self.plyship.rect.midbottom = self.plyship.screen_rect.midbottom
+        self.plyship.x = float(self.plyship.rect.x)
+        self.plyship.y = float(self.plyship.rect.y)
         
         
